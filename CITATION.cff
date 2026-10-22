@@ -1,6 +1,6 @@
 cff-version: 1.2.0
 message: "If you use this implementation, please cite the repository and the associated NTCIR-19 AEOLLM-2 participant paper."
-title: "aeollm2-osodt-paper"
+title: "AEOLLM-2 RSLIR Paper Code"
 type: software
 authors:
   - family-names: Ding
