@@ -1,0 +1,7 @@
+model,same_order_gain_original,same_order_gain_reverse,fixed_original_mean_accuracy,fixed_reverse_mean_accuracy,osodt_s1_accuracy,osodt_s2_accuracy,s1_minus_fixed_original,s1_minus_fixed_reverse,s2_minus_fixed_original,s2_minus_fixed_reverse
+Qwen3-8B,0.0054,0.0063,0.7342,0.7633,0.7642,0.7550,0.0300,0.0008,0.0208,-0.0083
+Qwen3-14B,0.0054,0.0050,0.7558,0.7583,0.7708,0.7717,0.0150,0.0125,0.0158,0.0133
+Qwen3.5-9B,0.0050,0.0021,0.7933,0.7892,0.8025,0.8008,0.0092,0.0133,0.0075,0.0117
+Ministral-14B,0.0008,0.0029,0.7917,0.7767,0.7842,0.7875,-0.0075,0.0075,-0.0042,0.0108
+Llama-3.1-8B,0.0063,0.0013,0.6450,0.6108,0.6233,0.6400,-0.0217,0.0125,-0.0050,0.0292
+Gemma-3-12B,-0.0008,-0.0013,0.7483,0.7592,0.7717,0.7600,0.0233,0.0125,0.0117,0.0008

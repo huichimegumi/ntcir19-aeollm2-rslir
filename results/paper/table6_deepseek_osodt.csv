@@ -1,0 +1,7 @@
+model,method,spearman,kendall,accuracy
+DeepSeek-v4-Flash,Original,0.7674,0.6133,0.8067
+DeepSeek-v4-Flash,Reverse,0.7747,0.6205,0.8092
+DeepSeek-v4-Flash,OSODT,0.7974,0.6483,0.8242
+DeepSeek-v4-Pro,Original,0.7882,0.6283,0.8142
+DeepSeek-v4-Pro,Reverse,0.7732,0.6333,0.8167
+DeepSeek-v4-Pro,OSODT,0.8135,0.6700,0.8350

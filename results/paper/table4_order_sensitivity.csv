@@ -1,0 +1,7 @@
+model,repeat_dimension_mae,order_dimension_mae,order_to_repeat_ratio,repeat_pair_agreement,order_pair_agreement
+Qwen3-8B,0.0214,0.2595,12.12,0.9483,0.8200
+Qwen3-14B,0.0131,0.2738,20.97,0.9663,0.8229
+Qwen3.5-9B,0.0281,0.2805,9.99,0.9704,0.8800
+Ministral-14B,0.0163,0.2392,14.70,0.9725,0.8554
+Llama-3.1-8B,0.0635,0.3783,5.96,0.8813,0.6546
+Gemma-3-12B,0.0310,0.4642,14.98,0.9517,0.8442

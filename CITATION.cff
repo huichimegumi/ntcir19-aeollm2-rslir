@@ -1,0 +1,10 @@
+cff-version: 1.2.0
+message: "If you use this implementation, please cite the repository and the associated NTCIR-19 AEOLLM-2 participant paper."
+title: "aeollm2-osodt-paper"
+type: software
+authors:
+  - family-names: Ding
+    given-names: Suhan
+repository-code: "https://github.com/huichimegumi/aeollm2-osodt-paper"
+license: MIT
+version: 0.1.0

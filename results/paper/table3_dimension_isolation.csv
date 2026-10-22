@@ -1,0 +1,5 @@
+model,joint_spearman,joint_kendall,joint_accuracy,odt_spearman,odt_kendall,odt_accuracy,delta_accuracy
+Qwen3-8B,0.5846,0.4566,0.6650,0.6281,0.4679,0.7300,0.0650
+Qwen3-14B,0.5291,0.4434,0.3792,0.6929,0.5484,0.7575,0.3783
+Qwen3.5-9B,0.5686,0.4501,0.6542,0.7321,0.5764,0.7850,0.1308
+Ministral-14B,0.6613,0.5150,0.7533,0.7288,0.5721,0.7850,0.0317

@@ -1,0 +1,21 @@
+name: qwen3-8b-vllm
+
+model:
+  id: qwen3-8b
+  base_url: http://127.0.0.1:8000/v1
+  api_key_env: VLLM_API_KEY
+
+generation:
+  temperature: 0.0
+  max_tokens: 2048
+  timeout_seconds: 600
+  max_retries: 3
+  concurrency: 4
+
+context:
+  tokenizer: Qwen/Qwen3-8B
+  max_context_tokens: 32768
+
+extra_body:
+  chat_template_kwargs:
+    enable_thinking: false

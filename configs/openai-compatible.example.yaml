@@ -1,0 +1,23 @@
+name: example-openai-compatible
+
+model:
+  id: your-model-name
+  base_url: https://your-provider.example/v1
+  api_key_env: JUDGE_API_KEY
+
+generation:
+  temperature: 0.0
+  max_tokens: 2048
+  timeout_seconds: 600
+  max_retries: 3
+  concurrency: 4
+
+# Omit both fields when the provider's tokenizer is unavailable.
+# When configured, the runner rejects over-context requests instead of truncating them.
+context:
+  tokenizer: null
+  max_context_tokens: null
+
+# Provider-specific OpenAI-compatible request fields belong here.
+# Do not add provider-name conditionals to the Python code.
+extra_body: {}

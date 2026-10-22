@@ -1,0 +1,48 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "aeollm2-osodt"
+version = "0.1.0"
+description = "Official implementation of ODT and OSODT for NTCIR-19 AEOLLM-2."
+readme = "README.md"
+requires-python = ">=3.10"
+license = {text = "MIT"}
+authors = [{name = "Suhan Ding"}]
+dependencies = [
+  "openai>=1.0.0",
+  "python-docx>=1.1.0",
+  "PyYAML>=6.0",
+  "pandas>=2.0",
+  "numpy>=1.24",
+  "scipy>=1.10",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8.0"]
+tokenizer = ["transformers>=4.40"]
+
+[project.scripts]
+aeollm2-osodt = "aeollm2_osodt.cli:main"
+
+[tool.hatch.build]
+exclude = [
+  "/.local", "/AGENTS.md", "/data", "/outputs", "/results/validation",
+  "/logs", "/models", "/checkpoints", "/configs/local",
+  "/configs/*.local.yaml", "/configs/*.local.yml", "**/.env", "**/.env.*",
+]
+
+[tool.hatch.build.targets.sdist]
+only-include = [
+  "src/aeollm2_osodt", "tests", "configs", "prompts", "scripts", "docs",
+  "results/paper", "README.md", "README_zh-CN.md",
+  "LICENSE", "CITATION.cff", "pyproject.toml",
+]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/aeollm2_osodt"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]

@@ -1,0 +1,36 @@
+# DeepSeek-v4-Flash configuration used for the paper's ODT/OSODT experiments.
+#
+# Paper request settings:
+# - provider base URL: https://api.deepseek.com
+# - model ID: deepseek-v4-flash
+# - temperature: 0
+# - max output tokens: 2048
+# - thinking mode: disabled
+# - criterion-order runs used four API workers
+#
+# The hosted model ID is not an immutable provider-side revision.
+
+name: deepseek-v4-flash-paper
+
+model:
+  id: deepseek-v4-flash
+  base_url: https://api.deepseek.com
+  api_key_env: DEEPSEEK_API_KEY
+
+generation:
+  temperature: 0.0
+  max_tokens: 2048
+  timeout_seconds: 600
+  max_retries: 3
+  concurrency: 4
+
+# No tokenizer/model-context revision for the historical hosted model was
+# archived, so the clean runner cannot perform tokenizer-based preflight here.
+context:
+  tokenizer: null
+  max_context_tokens: null
+
+# Matches the historical DeepSeek thinking-off request body.
+extra_body:
+  thinking:
+    type: disabled
