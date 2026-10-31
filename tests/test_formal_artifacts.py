@@ -25,7 +25,7 @@ def test_deepseek_paper_config_matches_archived_request_semantics() -> None:
     assert config.extra_body == {"thinking": {"type": "disabled"}}
 
 
-def test_formal_table9_delta_and_manifest_boundary() -> None:
+def test_formal_table10_delta_and_manifest_boundary() -> None:
     metrics_path = ROOT / "results/paper/formal/official_metrics.csv"
     metrics = pd.read_csv(metrics_path).set_index("method")
 

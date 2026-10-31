@@ -18,7 +18,7 @@ def test_local_paths_and_symlinks_are_rejected():
 
 
 def test_paper_artifacts_and_portable_examples_are_allowed():
-    for path in ['results/paper/table3_dimension_isolation.csv', 'prompts/prompt_scales.json',
+    for path in ['results/paper/table4_dimension_isolation.csv', 'prompts/prompt_scales.json',
                  'configs/qwen3-8b-e9.yaml', '.env.example', 'tests/fixtures/layout_tie.json']:
         assert PUBLIC_TREE.check_file(path, b'portable example') == []
 

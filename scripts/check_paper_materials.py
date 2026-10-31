@@ -8,10 +8,10 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1] / 'results' / 'paper'
 TABLES = {
-    3: ('table3_dimension_isolation.csv', 4),
-    4: ('table4_order_sensitivity.csv', 6),
-    5: ('table5_order_symmetrization_accuracy.csv', 6),
-    6: ('table6_deepseek_osodt.csv', 6),
+    4: ('table4_dimension_isolation.csv', 4),
+    5: ('table5_order_sensitivity.csv', 6),
+    6: ('table6_order_symmetrization_accuracy.csv', 6),
+    7: ('table7_deepseek_osodt.csv', 6),
 }
 
 
@@ -37,32 +37,32 @@ def near(actual: Decimal, expected: Decimal, source: str) -> None:
 
 def check() -> None:
     rows = {number: read_csv(ROOT / filename, count) for number, (filename, count) in TABLES.items()}
-    for row in rows[3]:
+    for row in rows[4]:
         near(Decimal(row['delta_accuracy']), Decimal(row['odt_accuracy']) - Decimal(row['joint_accuracy']),
-             f"Table 3 {row['model']} delta")
-    for row in rows[5]:
+             f"Table 4 {row['model']} delta")
+    for row in rows[6]:
         for sym in ('s1', 's2'):
             for fixed in ('original', 'reverse'):
                 near(Decimal(row[f'{sym}_minus_fixed_{fixed}']),
                      Decimal(row[f'osodt_{sym}_accuracy']) - Decimal(row[f'fixed_{fixed}_mean_accuracy']),
-                     f"Table 5 {row['model']} {sym}/{fixed}")
+                     f"Table 6 {row['model']} {sym}/{fixed}")
     expected_grid = {(model, method) for model in ('DeepSeek-v4-Flash', 'DeepSeek-v4-Pro')
                      for method in ('Original', 'Reverse', 'OSODT')}
-    if {(row['model'], row['method']) for row in rows[6]} != expected_grid:
-        raise ValueError('Table 6 model/method grid is incomplete')
+    if {(row['model'], row['method']) for row in rows[7]} != expected_grid:
+        raise ValueError('Table 7 model/method grid is incomplete')
     formal = read_csv(ROOT / 'formal' / 'official_metrics.csv', 3)
     indexed = {row['method']: row for row in formal}
     labels = ('DeepSeek-v3.2', 'RSLIR (SRAD+OSODT)', 'Delta (RSLIR - DeepSeek-v3.2)')
     if set(indexed) != set(labels):
-        raise ValueError('Table 9 method rows are incomplete')
+        raise ValueError('Table 10 method rows are incomplete')
     for column in formal[0]:
         if column == 'method':
             continue
         near(Decimal(indexed[labels[2]][column]),
              Decimal(indexed[labels[1]][column]) - Decimal(indexed[labels[0]][column]),
-             f'Table 9 {column} delta')
+             f'Table 10 {column} delta')
 
 
 if __name__ == '__main__':
     check()
-    print('Paper CSV snapshots passed structural and arithmetic checks (Tables 3–6 and 9).')
+    print('Paper CSV snapshots passed structural and arithmetic checks (Tables 4–7 and 10).')

@@ -4,9 +4,9 @@
 
 [English](README.md)
 
-本仓库对应 RSLIR 团队的论文 *RSLIR at the NTCIR-19 AEOLLM-2 Task*，提供 One-Dimension-at-a-Time (ODT)、Order-Symmetrized One-Dimension-at-a-Time (OSODT) 的实现、实验配置、评估工具，以及论文 Tables 3–6、9 的四舍五入数值快照。
+本仓库对应 RSLIR 团队的论文 *RSLIR at the NTCIR-19 AEOLLM-2 Task*，提供 One-Dimension-at-a-Time (ODT)、Order-Symmetrized One-Dimension-at-a-Time (OSODT) 的实现、实验配置、评估工具，以及论文 Tables 4–7、10 的四舍五入数值快照。
 
-正式提交在全面性、洞察深度和指令遵循三个维度使用 OSODT，在可读性维度使用 Sequential Reference and Attention Decay (SRAD)。**本仓库实现 ODT 和 OSODT，但不包含 SRAD 或 AdapR 的实现。** 因此，单凭当前代码无法完整复现正式提交的 SRAD+OSODT 系统；Table 9 是组织方返回的正式评测指标，而非本仓库重新计算的结果。
+正式提交在全面性、洞察深度和指令遵循三个维度使用 OSODT，在可读性维度使用 Sequential Reference and Attention Decay (SRAD)。**本仓库实现 ODT 和 OSODT，但不包含 SRAD 或 AdapR 的实现。** 因此，单凭当前代码无法完整复现正式提交的 SRAD+OSODT 系统；Table 10 是组织方返回的正式评测指标，而非本仓库重新计算的结果。
 
 ODT 对四个评价维度分别调用模型。OSODT 对每个维度分别使用原顺序、逆顺序的 criterion；按 criterion 身份对齐两次分数并取平均，然后按官方 rubric 权重汇总。DOCX 读取器按文档顺序读取段落和表格。
 
@@ -79,7 +79,7 @@ aeollm2-osodt export-submission \
 
 ## 论文数值与本地检查
 
-[results/paper/README.md](results/paper/README.md) 列出各表来源和复现边界。Table 9 是组织方用隐藏的保留集标签评估后返回的指标快照。
+[results/paper/README.md](results/paper/README.md) 列出各表来源和复现边界。Table 10 是组织方用隐藏的保留集标签评估后返回的指标快照。
 
 ```bash
 python scripts/check_paper_materials.py

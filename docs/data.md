@@ -55,4 +55,4 @@ For the complete labelled train split, the expected count is 160. Match `ReportN
 | `--config` | Model service and generation settings | `configs/deepseek-v4-flash-paper.yaml` |
 | `--output-dir` | New run and evaluation artifacts | `outputs/deepseek-v4-flash-osodt` |
 
-`run` needs reports and rubrics, and never reads labels. `evaluate` needs prediction TSV, labels, and rubrics. The report and rubric files must belong to the same split and question IDs. The held-out formal Table 9 labels are organizer-side and are not distributed here.
+`run` needs reports and rubrics, and never reads labels. `evaluate` needs prediction TSV, labels, and rubrics. The report and rubric files must belong to the same split and question IDs. The held-out formal Table 10 labels are organizer-side and are not distributed here.
