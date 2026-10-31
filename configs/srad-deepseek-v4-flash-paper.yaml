@@ -1,0 +1,16 @@
+# Final SRAD settings, verified against the formal-run experiment record.
+model:
+  id: deepseek-v4-flash
+  base_url: https://api.deepseek.com
+  api_key_env: DEEPSEEK_API_KEY
+generation:
+  temperature: 0
+  thinking: "off"
+  section_max_tokens: 4096
+  global_max_tokens: 2048
+  api_retry_attempts: 2
+srad:
+  beta: 0.4
+  alpha: 0.3
+  section_repeats: 3
+  global_order_seeds: [42, 43, 44]

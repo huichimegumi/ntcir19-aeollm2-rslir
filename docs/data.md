@@ -56,3 +56,20 @@ For the complete labelled train split, the expected count is 160. Match `ReportN
 | `--output-dir` | New run and evaluation artifacts | `outputs/deepseek-v4-flash-osodt` |
 
 `run` needs reports and rubrics, and never reads labels. `evaluate` needs prediction TSV, labels, and rubrics. The report and rubric files must belong to the same split and question IDs. The held-out formal Table 10 labels are organizer-side and are not distributed here.
+
+## SRAD and the final combined system
+
+SRAD accepts the same `--report-root` and `--rubric-dir` layout. It discovers
+`ReportN/Doc_###.docx` directly and does not require the historical Excel workbook
+mapping blind IDs to generating models. Keep canonical official IDs; missing or
+renamed reports change the sequential-reference population. SRAD does not read
+human labels during inference.
+
+Both methods must use the same question/document set. The final merger rejects
+missing, extra or duplicate IDs. SRAD's headed intermediate TSV intentionally
+leaves the three content dimensions blank; merge it with OSODT before passing it
+to the existing four-dimensional evaluator. See [srad.md](srad.md).
+
+SRAD preserves its historical paragraph-based DOCX extraction; the existing
+OSODT reader continues to include tables. Sharing input paths does not change
+either method's original extraction protocol.
