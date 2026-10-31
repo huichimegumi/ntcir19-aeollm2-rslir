@@ -5,13 +5,13 @@ build-backend = "hatchling.build"
 [project]
 name = "aeollm2-osodt"
 version = "0.1.0"
-description = "ODT and OSODT implementation accompanying the RSLIR NTCIR-19 AEOLLM-2 participant paper."
+description = "ODT, OSODT, SRAD and AdapR implementations accompanying the RSLIR NTCIR-19 AEOLLM-2 participant paper."
 readme = "README.md"
 requires-python = ">=3.10"
 license = {text = "MIT"}
 authors = [{name = "Suhan Ding"}]
 dependencies = [
-  "openai>=1.0.0",
+  "openai>=1.0.0,<3",
   "python-docx>=1.1.0",
   "PyYAML>=6.0",
   "pandas>=2.0",
@@ -26,6 +26,8 @@ tokenizer = ["transformers>=4.40"]
 [project.scripts]
 aeollm2-osodt = "aeollm2_osodt.cli:main"
 aeollm2-adapr = "aeollm2_adapr.cli:main"
+aeollm2-srad = "aeollm2_srad.cli:main"
+aeollm2-merge-final = "aeollm2_srad.submission:main"
 
 [tool.hatch.build]
 exclude = [
@@ -36,13 +38,13 @@ exclude = [
 
 [tool.hatch.build.targets.sdist]
 only-include = [
-  "src/aeollm2_osodt", "src/aeollm2_adapr", "tests", "configs", "prompts",
+  "src/aeollm2_osodt", "src/aeollm2_adapr", "src/aeollm2_srad", "tests", "configs", "prompts",
   "scripts", "docs", "results/paper", "README.md", "README_zh-CN.md",
   "LICENSE", "CITATION.cff", "pyproject.toml",
 ]
 
 [tool.hatch.build.targets.wheel]
-packages = ["src/aeollm2_osodt", "src/aeollm2_adapr"]
+packages = ["src/aeollm2_osodt", "src/aeollm2_adapr", "src/aeollm2_srad"]
 
 [tool.pytest.ini_options]
 pythonpath = ["src"]

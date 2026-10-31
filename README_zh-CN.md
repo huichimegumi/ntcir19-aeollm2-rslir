@@ -4,9 +4,9 @@
 
 [English](README.md)
 
-本仓库对应 RSLIR 团队的论文 *RSLIR at the NTCIR-19 AEOLLM-2 Task*，提供 One-Dimension-at-a-Time (ODT)、Order-Symmetrized One-Dimension-at-a-Time (OSODT) 的实现、实验配置、评估工具，以及论文 Tables 4–7、10 的四舍五入数值快照。
+本仓库对应 RSLIR 团队的论文 *RSLIR at the NTCIR-19 AEOLLM-2 Task*，提供 ODT、OSODT、SRAD 和 AdapR 的实现、实验配置、评估工具，以及论文 Tables 4–7、10 的四舍五入数值快照。
 
-正式提交在全面性、洞察深度和指令遵循三个维度使用 OSODT，在可读性维度使用 Sequential Reference and Attention Decay (SRAD)。**本仓库实现 ODT 和 OSODT，但不包含 SRAD 或 AdapR 的实现。** 因此，单凭当前代码无法完整复现正式提交的 SRAD+OSODT 系统；Table 10 是组织方返回的正式评测指标，而非本仓库重新计算的结果。
+正式提交在全面性、洞察深度和指令遵循三个维度使用 OSODT，在可读性维度使用 Sequential Reference and Attention Decay (SRAD)。**本仓库已包含最终 SRAD 实现与 SRAD+OSODT 结果合并入口。** 可以重新运行组合方法；Table 10 仍是组织方返回的历史正式评测指标，并非此次发布重新计算的结果。
 
 ODT 对四个评价维度分别调用模型。OSODT 对每个维度分别使用原顺序、逆顺序的 criterion；按 criterion 身份对齐两次分数并取平均，然后按官方 rubric 权重汇总。DOCX 读取器按文档顺序读取段落和表格。
 
@@ -22,9 +22,39 @@ python -m pip install -e '.[dev]'
 
 Qwen 示例若启用 tokenizer 上下文预检，还需 `python -m pip install -e '.[tokenizer]'`。官方数据的固定版本下载命令、DOCX 来源和目录结构见 [docs/data.md](docs/data.md)。下面命令均在仓库根目录执行。
 
-## 运行论文方法
+## 运行最终 SRAD+OSODT 系统
 
-论文使用 DeepSeek-v4-Flash、temperature 0、最多 2048 输出 token、关闭 thinking、4 路并发；配置文件为 `configs/deepseek-v4-flash-paper.yaml`：
+方法分别位于 `src/aeollm2_osodt/`、`src/aeollm2_srad/` 和
+`src/aeollm2_adapr/`。新增 SRAD 只包含论文最终实现，原有 OSODT 和 AdapR
+接口保留。AdapR 的说明见 [docs/adapr.md](docs/adapr.md)。
+
+先按下文运行 OSODT，再对**同一批报告和 rubric** 运行 SRAD 并合并：
+
+```bash
+aeollm2-srad \
+  --config configs/srad-deepseek-v4-flash-paper.yaml \
+  --report-root data/official/aeollm-2-train/reports \
+  --rubric-dir data/official/aeollm-2-train/rubric_dataset \
+  --output-dir outputs/deepseek-v4-flash-srad
+
+aeollm2-merge-final \
+  --osodt outputs/deepseek-v4-flash-osodt/predictions/osodt.tsv \
+  --srad outputs/deepseek-v4-flash-srad/predictions/srad.tsv \
+  --output outputs/final/SRAD-OSODT.tsv
+```
+
+合并时按问题 ID 和文档 ID 对齐，保留 OSODT 前三个维度，使用 SRAD 的可读性分数。
+合并文件可以直接传给现有 `aeollm2-osodt evaluate` 评估。上述示例使用公开训练集；
+运行其他可用划分时，应同时切换两个方法的数据路径。
+
+SRAD 配置为 beta=0.4、alpha=0.3、section 重复 3 次、global seeds 为 42/43/44。
+section/global 输出上限分别为 4096/2048 token，同一参考链按顺序执行。
+不需要原来的 Excel 映射表。输入要求、断点续跑和历史复现边界见
+[docs/srad.md](docs/srad.md)。
+
+## 运行 OSODT
+
+ODT/OSODT 实验使用 DeepSeek-v4-Flash、temperature 0、最多 2048 输出 token、关闭 thinking、4 路并发；配置文件为 `configs/deepseek-v4-flash-paper.yaml`：
 
 ```bash
 export DEEPSEEK_API_KEY='your-key'
