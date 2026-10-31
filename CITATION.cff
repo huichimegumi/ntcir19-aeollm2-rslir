@@ -1,10 +1,10 @@
 cff-version: 1.2.0
-message: "If you use this implementation, please cite the repository and the associated NTCIR-19 AEOLLM-2 participant paper."
-title: "AEOLLM-2 RSLIR Paper Code"
+message: "If you use this ODT/OSODT implementation, please cite the associated RSLIR NTCIR-19 AEOLLM-2 participant paper."
+title: "RSLIR at the NTCIR-19 AEOLLM-2 Task: Code and Results"
 type: software
 authors:
   - family-names: Ding
     given-names: Suhan
-repository-code: "https://github.com/huichimegumi/aeollm2-osodt-paper"
+repository-code: "https://github.com/huichimegumi/ntcir19-aeollm2-rslir"
 license: MIT
 version: 0.1.0

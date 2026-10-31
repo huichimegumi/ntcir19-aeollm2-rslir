@@ -1,4 +1,4 @@
 method,weighted_spearman,weighted_kendall,weighted_accuracy,comprehensiveness_spearman,comprehensiveness_kendall,comprehensiveness_accuracy,insight_spearman,insight_kendall,insight_accuracy,instruction_following_spearman,instruction_following_kendall,instruction_following_accuracy,readability_spearman,readability_kendall,readability_accuracy
 DeepSeek-v3.2,0.6101,0.4739,0.7321,0.5781,0.4552,0.6796,0.6111,0.4903,0.6988,0.3484,0.2633,0.5354,0.4008,0.3217,0.4421
-RSLIR (OSODT),0.7071,0.5592,0.7796,0.6881,0.5355,0.7533,0.6890,0.5488,0.7425,0.5353,0.4199,0.6350,0.3978,0.2774,0.6342
+RSLIR (SRAD+OSODT),0.7071,0.5592,0.7796,0.6881,0.5355,0.7533,0.6890,0.5488,0.7425,0.5353,0.4199,0.6350,0.3978,0.2774,0.6342
 Delta (RSLIR - DeepSeek-v3.2),0.0970,0.0853,0.0475,0.1100,0.0803,0.0737,0.0779,0.0585,0.0437,0.1869,0.1566,0.0996,-0.0030,-0.0443,0.1921

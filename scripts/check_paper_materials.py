@@ -52,7 +52,7 @@ def check() -> None:
         raise ValueError('Table 6 model/method grid is incomplete')
     formal = read_csv(ROOT / 'formal' / 'official_metrics.csv', 3)
     indexed = {row['method']: row for row in formal}
-    labels = ('DeepSeek-v3.2', 'RSLIR (OSODT)', 'Delta (RSLIR - DeepSeek-v3.2)')
+    labels = ('DeepSeek-v3.2', 'RSLIR (SRAD+OSODT)', 'Delta (RSLIR - DeepSeek-v3.2)')
     if set(indexed) != set(labels):
         raise ValueError('Table 9 method rows are incomplete')
     for column in formal[0]:

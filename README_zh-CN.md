@@ -1,10 +1,16 @@
-# AEOLLM-2 ODT / OSODT 论文代码
+# RSLIR at the NTCIR-19 AEOLLM-2 Task
+
+**NTCIR-19 AEOLLM-2 Participant Paper 的代码与结果**
 
 [English](README.md)
 
-本仓库提供 RSLIR NTCIR-19 AEOLLM-2 论文中的 ODT、OSODT 方法实现，以及论文 Tables 3–6、9 的 CSV 数值快照。官方报告、rubric、人工标签、原始模型响应和逐文档预测不包含在仓库中。
+本仓库对应 RSLIR 团队的论文 *RSLIR at the NTCIR-19 AEOLLM-2 Task*，提供 One-Dimension-at-a-Time (ODT)、Order-Symmetrized One-Dimension-at-a-Time (OSODT) 的实现、实验配置、评估工具，以及论文 Tables 3–6、9 的四舍五入数值快照。
+
+正式提交在全面性、洞察深度和指令遵循三个维度使用 OSODT，在可读性维度使用 Sequential Reference and Attention Decay (SRAD)。**本仓库实现 ODT 和 OSODT，但不包含 SRAD 或 AdapR 的实现。** 因此，单凭当前代码无法完整复现正式提交的 SRAD+OSODT 系统；Table 9 是组织方返回的正式评测指标，而非本仓库重新计算的结果。
 
 ODT 对四个评价维度分别调用模型。OSODT 对每个维度分别使用原顺序、逆顺序的 criterion；按 criterion 身份对齐两次分数并取平均，然后按官方 rubric 权重汇总。DOCX 读取器按文档顺序读取段落和表格。
+
+实际实验使用的评审指令与评分锚点为中文。英文结构说明见 [docs/prompt.md](docs/prompt.md)；复现实验时不应直接用英文翻译替换原始 Prompt。官方报告、rubric、人工标签、原始模型响应和逐文档预测均未随仓库打包。
 
 ## 安装与数据
 

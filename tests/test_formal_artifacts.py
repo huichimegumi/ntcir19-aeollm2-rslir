@@ -30,7 +30,7 @@ def test_formal_table9_delta_and_manifest_boundary() -> None:
     metrics = pd.read_csv(metrics_path).set_index("method")
 
     baseline = metrics.loc["DeepSeek-v3.2"]
-    rslir = metrics.loc["RSLIR (OSODT)"]
+    rslir = metrics.loc["RSLIR (SRAD+OSODT)"]
     reported_delta = metrics.loc["Delta (RSLIR - DeepSeek-v3.2)"]
 
     recomputed_delta = rslir - baseline

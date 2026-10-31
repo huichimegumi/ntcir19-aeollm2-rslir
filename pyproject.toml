@@ -5,7 +5,7 @@ build-backend = "hatchling.build"
 [project]
 name = "aeollm2-osodt"
 version = "0.1.0"
-description = "Official implementation of ODT and OSODT for NTCIR-19 AEOLLM-2."
+description = "ODT and OSODT implementation accompanying the RSLIR NTCIR-19 AEOLLM-2 participant paper."
 readme = "README.md"
 requires-python = ">=3.10"
 license = {text = "MIT"}

@@ -1,10 +1,16 @@
-# AEOLLM-2 ODT / OSODT paper code
+# RSLIR at the NTCIR-19 AEOLLM-2 Task
+
+**Code and Results for the NTCIR-19 AEOLLM-2 Participant Paper**
 
 [中文说明](README_zh-CN.md)
 
-This repository provides the ODT and OSODT implementation described in the RSLIR NTCIR-19 AEOLLM-2 participant paper. It contains paper-result CSV snapshots for Tables 3–6 and 9. Task reports, rubrics, human labels, raw model responses, and historical per-document predictions are obtained or generated separately.
+This repository accompanies the RSLIR participant paper, *RSLIR at the NTCIR-19 AEOLLM-2 Task*. It provides implementations of One-Dimension-at-a-Time (ODT) and Order-Symmetrized One-Dimension-at-a-Time (OSODT) evaluation, experimental configurations, evaluation utilities, and rounded result snapshots for Tables 3–6 and 9.
+
+Our formal submission used OSODT for comprehensiveness, insight, and instruction following, and Sequential Reference and Attention Decay (SRAD) for readability. **This repository implements ODT and OSODT, but not SRAD or AdapR.** Consequently, its code does not reproduce the complete SRAD+OSODT formal submission; Table 9 contains organizer-returned metrics rather than metrics regenerated from the archived submission.
 
 ODT judges each of the four quality dimensions independently. OSODT judges each dimension with original and reversed rubric-criterion order, aligns scores by criterion identity, averages the aligned pairs, then applies rubric weights. The DOCX reader includes paragraphs and tables in document order.
+
+The actual judging instructions and scoring anchors are written in Chinese, as used in the experiments. See [docs/prompt.md](docs/prompt.md) for an English overview; do not substitute translated instructions when attempting to reproduce the historical protocol. Task reports, rubrics, human labels, raw model responses, and historical per-document predictions are obtained or generated separately.
 
 ## Install
 
