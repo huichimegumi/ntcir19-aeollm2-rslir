@@ -25,6 +25,7 @@ tokenizer = ["transformers>=4.40"]
 
 [project.scripts]
 aeollm2-osodt = "aeollm2_osodt.cli:main"
+aeollm2-adapr = "aeollm2_adapr.cli:main"
 
 [tool.hatch.build]
 exclude = [
@@ -35,13 +36,13 @@ exclude = [
 
 [tool.hatch.build.targets.sdist]
 only-include = [
-  "src/aeollm2_osodt", "tests", "configs", "prompts", "scripts", "docs",
-  "results/paper", "README.md", "README_zh-CN.md",
+  "src/aeollm2_osodt", "src/aeollm2_adapr", "tests", "configs", "prompts",
+  "scripts", "docs", "results/paper", "README.md", "README_zh-CN.md",
   "LICENSE", "CITATION.cff", "pyproject.toml",
 ]
 
 [tool.hatch.build.targets.wheel]
-packages = ["src/aeollm2_osodt"]
+packages = ["src/aeollm2_osodt", "src/aeollm2_adapr"]
 
 [tool.pytest.ini_options]
 pythonpath = ["src"]

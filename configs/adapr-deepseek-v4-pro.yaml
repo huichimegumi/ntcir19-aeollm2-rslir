@@ -1,0 +1,34 @@
+# AdapR configuration using DeepSeek-v4-Pro.
+#
+# This configuration was used for the AdapR experiments:
+# - Train Spearman: 0.799 (vs. baseline 0.606)
+# - Model: deepseek-v4-pro
+# - Temperature: 0 (deterministic)
+# - Thinking mode: disabled
+# - Criterion generation max_tokens: 8000 (per-criterion anchors are verbose)
+# - Scoring max_tokens: 2000
+# - Concurrent documents: 4
+
+name: adapr-deepseek-v4-pro
+
+model:
+  id: deepseek-v4-pro
+  base_url: https://api.deepseek.com
+  api_key_env: DEEPSEEK_API_KEY
+
+generation:
+  temperature: 0.0
+  max_tokens: 2000
+  timeout_seconds: 600
+  max_retries: 3
+  concurrency: 4
+
+context:
+  tokenizer: null
+  max_context_tokens: null
+
+# Disable thinking mode — scoring is a judgment task, not a reasoning task.
+# Enabling thinking on DeepSeek-v4-Pro caused Spearman to drop from 0.773 to 0.649.
+extra_body:
+  thinking:
+    type: disabled

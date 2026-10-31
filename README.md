@@ -6,7 +6,9 @@
 
 This repository accompanies the RSLIR participant paper, *RSLIR at the NTCIR-19 AEOLLM-2 Task*. It provides implementations of One-Dimension-at-a-Time (ODT) and Order-Symmetrized One-Dimension-at-a-Time (OSODT) evaluation, experimental configurations, evaluation utilities, and rounded result snapshots for Tables 4–7 and 10.
 
-Our formal submission used OSODT for comprehensiveness, insight, and instruction following, and Sequential Reference and Attention Decay (SRAD) for readability. **This repository implements ODT and OSODT, but not SRAD or AdapR.** Consequently, its code does not reproduce the complete SRAD+OSODT formal submission; Table 10 contains organizer-returned metrics rather than metrics regenerated from the archived submission.
+Our formal submission used OSODT for comprehensiveness, insight, and instruction following, and Sequential Reference and Attention Decay (SRAD) for readability. **This repository implements ODT, OSODT, and AdapR, but not SRAD.** Consequently, its code does not reproduce the complete SRAD+OSODT formal submission; Table 10 contains organizer-returned metrics rather than metrics regenerated from the archived submission.
+
+AdapR (Adaptive Criterion Auto-Rubric) is a complementary method that generates question-specific scoring criteria automatically from the research question text, rather than using the official human-authored rubric. It achieved a train-set Spearman of 0.799 (+0.193 over the official baseline). See [docs/adapr.md](docs/adapr.md) for a full description.
 
 ODT judges each of the four quality dimensions independently. OSODT judges each dimension with original and reversed rubric-criterion order, aligns scores by criterion identity, averages the aligned pairs, then applies rubric weights. The DOCX reader includes paragraphs and tables in document order.
 
@@ -100,6 +102,26 @@ pytest -q
 ```
 
 The first command checks CSV structure and arithmetic. It does not regenerate the historical judge outputs or the paper metrics from model inference. The tests use synthetic inputs and run locally; this repository has no GitHub Actions workflow.
+
+## Run AdapR
+
+AdapR generates question-specific criteria automatically and does not require the official rubric dataset for scoring. It uses the HuggingFace dataset only to retrieve question text and answer IDs.
+
+Set a valid API key, then run:
+
+```bash
+export DEEPSEEK_API_KEY='your-key'
+aeollm2-adapr \
+  --config configs/adapr-deepseek-v4-pro.yaml \
+  --report-root data/official/aeollm-2-train/reports \
+  --output outputs/adapr/predictions.tsv \
+  --cache-dir cache/adapr \
+  --workers 4
+```
+
+All LLM outputs (generated criteria, question type labels, IF checklists, per-dimension scores) are cached under `--cache-dir`. Re-runs with the same cache directory skip cached steps. Use a different cache directory when changing the model or prompts.
+
+For full method details and design rationale, see [docs/adapr.md](docs/adapr.md).
 
 ## Citation and license
 
